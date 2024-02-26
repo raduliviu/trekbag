@@ -1,9 +1,11 @@
 import AddItemForm from './AddItemForm';
 import ButtonGroup from './ButtonGroup';
-import { useItemsStore } from '../stores/itemsStore';
+import { itemsActions } from '../stores/itemsSlice';
+import { useDispatch } from 'react-redux';
 
 export default function Sidebar() {
-  const addItem = useItemsStore((state) => state.addItem);
+  const dispatch = useDispatch();
+  const addItem = (name) => dispatch(itemsActions.addItem(name));
 
   return (
     <div className='sidebar'>

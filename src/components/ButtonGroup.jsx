@@ -1,11 +1,21 @@
-import { useItemsStore } from '../stores/itemsStore';
 import Button from './Button';
+import { useDispatch } from 'react-redux';
+import { itemsActions } from '../stores/itemsSlice';
 
 export default function ButtonGroup() {
-  const markAllComplete = useItemsStore((state) => state.markAllComplete);
-  const markAllIncomplete = useItemsStore((state) => state.markAllIncomplete);
-  const resetToInitial = useItemsStore((state) => state.resetToInitial);
-  const removeAllItems = useItemsStore((state) => state.removeAllItems);
+  const dispatch = useDispatch();
+  const markAllComplete = () => {
+    dispatch(itemsActions.markAllComplete());
+  };
+  const markAllIncomplete = () => {
+    dispatch(itemsActions.markAllIncomplete());
+  };
+  const resetToInitial = () => {
+    dispatch(itemsActions.resetToInitial());
+  };
+  const removeAllItems = () => {
+    dispatch(itemsActions.removeAllItems());
+  };
 
   return (
     <section className='button-group'>

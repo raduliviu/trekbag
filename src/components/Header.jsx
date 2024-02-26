@@ -1,9 +1,9 @@
-import { useItemsStore } from '../stores/itemsStore';
 import Counter from './Counter';
 import Logo from './Logo';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
-  const items = useItemsStore((state) => state.items);
+  const items = useSelector((state) => state.items.items);
 
   return (
     <header>
