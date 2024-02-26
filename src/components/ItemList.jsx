@@ -1,7 +1,8 @@
 import Select from 'react-select';
 import EmptyView from './EmptyView';
 import { useMemo, useState } from 'react';
-import { useItemsStore } from '../stores/itemsStore';
+import { useSelector, useDispatch } from 'react-redux';
+import { itemsActions } from '../stores/itemsSlice';
 
 const sortingOptions = [
   { value: 'default', label: 'Sort by default' },
@@ -11,9 +12,10 @@ const sortingOptions = [
 
 export default function ItemList() {
   const [sortBy, setSortBy] = useState('default');
-  const items = useItemsStore((state) => state.items);
-  const deleteItem = useItemsStore((state) => state.deleteItem);
-  const toggleItem = useItemsStore((state) => state.toggleItem);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.items.items);
+  const deleteItem = (id) => dispatch(itemsActions.deleteItem(id));
+  const toggleItem = (id) => dispatch(itemsActions.toggleItem(id));
 
   const sortedItems = useMemo(
     () =>
